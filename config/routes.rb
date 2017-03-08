@@ -1,17 +1,11 @@
 Rails.application.routes.draw do
-  get 'user_skills/plus'
+  get 'user', to: 'user#index'
+  get 'user/signup', to:'user#new'
+  get 'user/:id', to: 'user#show'
 
-  get 'skills/index'
+  get 'user_skill/plus', to: 'user_skill#plus'
 
-  get 'skills/show'
-
-  get 'skills/create'
-
-  get 'users/index'
-
-  get 'users/show'
-
-  get 'users/new'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'skill', to: 'skill#index'
+  post 'skill', to: 'skill#create'
+  get 'skill/:id', to: 'skill#show'
 end
