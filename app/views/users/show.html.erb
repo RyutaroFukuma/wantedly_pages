@@ -1,2 +1,34 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profile</title>
+</head>
+<body>
+<h1><%= @user.name%></h1>
+<%= form_for @skill, :url => {:controller => 'skills', :action => 'create'} do |f| %>
+    <div class="field">
+      <%= f.text_field :name %>
+      <%= hidden_field_tag 'user_id', @user.id %>
+    </div>
+
+    <div class="action">
+      <%= f.submit "登録する" %>
+    </div>
+<% end %>
+
+<h2>スキル・特徴</h2>
+<table>
+  <% for user_skill in @user_skill %>
+      <tr>
+        <td>
+          <%= button_to user_skill.count, { controller: 'user_skills', action: 'plus' }, { method: :get, class: "UserSkillsController", params: { 'user_skills_id': user_skill.id } } %>
+        </td>
+        <td>
+          <%= user_skill.skill.name %>
+        </td>
+      </tr>
+  <% end %>
+</table>
+</body>
+</html>
+
