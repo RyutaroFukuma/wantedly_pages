@@ -21,7 +21,7 @@
   <% for user_skill in @user_skill %>
       <tr>
         <td>
-          <%= button_to user_skill.count, { controller: 'user_skills', action: 'plus' }, { method: :get, class: "UserSkillsController", params: { 'user_skills_id': user_skill.id } } %>
+          <%= button_to user_skill.count, { controller: 'user_skills', action: 'plus' }, { method: :get, class: "UserSkillsController", params: { 'user_skill_id': user_skill.id } } %>
         </td>
         <td>
           <%= user_skill.skill.name %>
