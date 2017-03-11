@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Profile</title>
-</head>
-<body>
+<% provide(:title, 'プロフィール') %>
 <h1><%= @user.name%></h1>
 <%= form_for @skill, :url => {:controller => 'skills', :action => 'create'} do |f| %>
     <div class="field">
@@ -11,9 +6,15 @@
       <%= hidden_field_tag 'user_id', @user.id %>
     </div>
 
-    <div class="action">
-      <%= f.submit "登録する" %>
-    </div>
+    <% if logged_in? && @user == current_user %>
+        <div class="action">
+          <%= f.submit "登録する" %>
+        </div>
+    <% elsif logged_in? && @user != current_user %>
+        <div class="action">
+          <%= f.submit "スキルを推薦する" %>
+        </div>
+    <% end %>
 <% end %>
 
 <h2>スキル・特徴</h2>
@@ -21,7 +22,13 @@
   <% for user_skill in @user_skill %>
       <tr>
         <td>
-          <%= button_to user_skill.count, { controller: 'user_skills', action: 'plus' }, { method: :get, class: "UserSkillsController", params: { 'user_skill_id': user_skill.id } } %>
+          <div class="skill-plus-button">
+          <% if logged_in? && @user == current_user %>
+              <%= user_skill.count %>
+          <% elsif logged_in? && @user != current_user %>
+              <%= button_to user_skill.count, { controller: 'user_skills', action: 'plus' }, { method: :get, class: "UserSkillsController", params: { 'user_skill_id': user_skill.id } } %>
+          <% end %>
+          </div>
         </td>
         <td>
           <%= user_skill.skill.name %>
@@ -29,6 +36,4 @@
       </tr>
   <% end %>
 </table>
-</body>
-</html>
 
