@@ -13,6 +13,8 @@ gem 'bootstrap-sass', '3.3.6'
 
 gem 'bcrypt', '3.1.11'
 
+gem 'rails-i18n'
+
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Use Puma as the app server

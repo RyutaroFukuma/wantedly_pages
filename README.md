@@ -1,3 +1,11 @@
 # README
 
-This app is a task for internship of Wantedly.
+Wantelyのインターンシップに向けた事前課題である。
+
+工夫した点
+・エラーメッセージを日本語に対応
+
+
+
+
+2017/03/11 現在
