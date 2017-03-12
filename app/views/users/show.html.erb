@@ -1,5 +1,9 @@
 <% provide(:title, 'プロフィール') %>
-<h1><%= @user.name%></h1>
+
+<h1>
+  <%= gravatar_for @user %>
+  <%= @user.name %>
+</h1>
 <%= form_for @skill, :url => {:controller => 'skills', :action => 'create'} do |f| %>
     <div class="field">
       <%= f.text_field :name %>
