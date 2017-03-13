@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @skill = Skill.new
-    @user_skill = UserSkill.all.order("count").reverse_order
+    user_skill = UserSkill.where(user_id: @user.id)
+    @user_skill = user_skill.order("count").reverse_order
   end
 
 
