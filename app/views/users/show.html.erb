@@ -27,11 +27,11 @@
       <tr>
         <td>
           <div class="skill-plus-button">
-          <% if logged_in? && @user == current_user %>
-              <%= user_skill.count %>
-          <% elsif logged_in? && @user != current_user %>
-              <%= button_to user_skill.count, { controller: 'user_skills', action: 'plus' }, { method: :get, class: "UserSkillsController", params: { 'user_skill_id': user_skill.id, 'user_id': @user.id } } %>
-          <% end %>
+            <% if logged_in? && @user == current_user %>
+                <%= user_skill.count %>
+            <% elsif logged_in? && @user != current_user %>
+                <%= link_to user_skill.count, user_skills_plus_path(user_skill_id: user_skill.id) %>
+            <% end %>
           </div>
         </td>
         <td>
