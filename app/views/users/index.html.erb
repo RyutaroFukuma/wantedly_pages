@@ -1,7 +1,9 @@
 <% provide(:title, '友達') %>
 <h1>友達</h1>
-<p>
-  <% for user in @user %>
-    <%= user.name %> <br />
+<ul>
+  <% @user.each do |user| %>
+      <li>
+        <%= link_to user.name, user_path(user.id) %>
+      </li>
   <% end %>
-</p>
+</ul>
