@@ -1,6 +1,4 @@
-# README
-
-Wantedlyのインターンシップに向けた事前課題  
+# Wantedlyのインターンシップに向けた事前課題  
 
 ・Bootstrap使用  
 ・エラーメッセージを日本語に対応  
