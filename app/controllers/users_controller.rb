@@ -6,8 +6,12 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @skill = Skill.new
-    user_skill = UserSkill.where(user_id: @user.id)
-    @user_skill = user_skill.order("count").reverse_order
+    user_skills = UserSkill.where(user_id: @user.id).includes(:skill, :user_skill_logs)
+    @user_skill_hash = Hash.new(0)
+    user_skills.each do |user_skill|
+      @user_skill_hash[user_skill] = user_skill.user_skill_logs.to_a.count
+    end
+    @user_skill_hash = Hash[ @user_skill_hash.sort_by{ |_, v| -v } ]
   end
 
 
@@ -19,7 +23,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
    if @user.save
      log_in @user
-     flash[:success] = "Welcome to the Wantedly"
     redirect_to @user
    else
     render 'new'
@@ -28,6 +31,15 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      redirect_to @user
+    else
+      render 'edit'
+    end
   end
 
   private

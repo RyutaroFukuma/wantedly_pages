@@ -23,14 +23,14 @@
 
 <h2>スキル・特徴</h2>
 <table>
-  <% for user_skill in @user_skill %>
+  <% @user_skill_hash.each do |user_skill, count| %>
       <tr>
         <td>
           <div class="skill-plus-button">
             <% if logged_in? && @user == current_user %>
-                <%= user_skill.count %>
+                <%= count %>
             <% elsif logged_in? && @user != current_user %>
-                <%= link_to user_skill.count, user_skills_plus_path(user_skill_id: user_skill.id) %>
+                <%= link_to count, user_skills_plus_path(user_skill_id: user_skill.id) %>
             <% end %>
           </div>
         </td>
@@ -40,4 +40,3 @@
       </tr>
   <% end %>
 </table>
-
